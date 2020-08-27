@@ -16,7 +16,7 @@
 ### Association
 
 - has_many :items
-- has_many :item_purchaser
+- has_many :purchaser_info
 
 ## items テーブル
 
@@ -45,25 +45,23 @@
 | post_code       | string     | null:false                    |
 | prefecture_code | integer    | null:false                    |
 | city            | string     | null:false                    |
-| house_number    | string     | null:false                    |
-| building_number | string     | null:false                    |
+| address1        | string     | null:false                    |
+| address2        | string     |                               |
 | item_purchaser  | references | null:false, foreign_key: true |
 
 ### Association
 
-- belongs_to :item_purchaser
+- belongs_to :purchaser_info
 - belongs_to :item
 
-## items_purchasers テーブル
+## purchaser_info テーブル
 
 | Column       | type       | Option                        |
 | ------------ | ---------- | ----------------------------- |
 | user         | references | null:false, foreign_key: true |
 | item         | references | null:false, foreign_key: true |
-| purchaser    | references | null:false, foreign_key: true |
 
 ### Association
 
 - has_one :purchaser
 - belongs_to :user
-- belongs_to :item
