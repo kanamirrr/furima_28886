@@ -17,8 +17,7 @@
 ### Association
 
 - has_many :items
-- has_one :purchases
-- has_one :cards
+- has_one :purchase
 
 ## items テーブル
 
@@ -33,37 +32,41 @@
 | prefecture_code | integer    | null:false                    |
 | preparation_day | integer    | null:false                    |
 | price           | integer    | null:false                    |
-| user_id         | references | null:false, foreign_key: true |
+| user            | references | null:false, foreign_key: true |
 
 ### Association
 
-- belongs_to :users
-- belongs_to :purchasers
+- has_one :purchaser
+- belongs_to :user
+- belongs_to :purchaser
 
-##  perchasers テーブル
+##  purchasers テーブル
 
 | Column          | type       | Option                        |
 | --------------- | ---------- | ----------------------------- |
-| post_code       | integer    | null:false                    |
+| post_code       | string     | null:false                    |
 | prefecture_code | integer    | null:false                    |
 | city            | string     | null:false                    |
 | house_number    | string     | null:false                    |
 | building_number | string     | null:false                    |
-| user_id         | references | null:false, foreign_key: true |
+| user            | references | null:false, foreign_key: true |
 
 ### Association
 
-- has_many :items
-- belongs_to :users
+- belongs_to :item
+- belongs_to :user
+- belongs_to :item_purchaser
 
 ## items_purchasers テーブル
 
 | Column       | type       | Option                        |
 | ------------ | ---------- | ----------------------------- |
-| item_id      | references | null:false, foreign_key: true |
-| purchaser_id | references | null:false, foreign_key: true |
+| item         | references | null:false, foreign_key: true |
+| purchaser    | references | null:false, foreign_key: true |
 
 ### Association
 
-- belongs_to :items
-- belongs_to :purchasers
+- has_one :users
+- has_one :items_purchasers
+- belongs_to :item
+- belongs_to :purchaser
