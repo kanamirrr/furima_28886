@@ -52,7 +52,6 @@
 ### Association
 
 - belongs_to :purchaser_info
-- belongs_to :item
 
 ## purchaser_info テーブル
 
