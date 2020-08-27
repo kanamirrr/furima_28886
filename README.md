@@ -9,7 +9,6 @@
 | family_name_kana      | string | null: false |
 | first_name_kana       | string | null: false |
 | password              | string | null: false |
-| password_confirmation | string | null: false |
 | nickname              | string | null: false |
 | email                 | string | null: false |
 | birth_day             | date   | null: false |
@@ -17,7 +16,7 @@
 ### Association
 
 - has_many :items
-- has_one :purchase
+- has_many :item_purchaser
 
 ## items テーブル
 
@@ -38,7 +37,6 @@
 
 - has_one :purchaser
 - belongs_to :user
-- belongs_to :purchaser
 
 ##  purchasers テーブル
 
@@ -49,24 +47,23 @@
 | city            | string     | null:false                    |
 | house_number    | string     | null:false                    |
 | building_number | string     | null:false                    |
-| user            | references | null:false, foreign_key: true |
+| item_purchaser  | references | null:false, foreign_key: true |
 
 ### Association
 
-- belongs_to :item
-- belongs_to :user
 - belongs_to :item_purchaser
+- belongs_to :item
 
 ## items_purchasers テーブル
 
 | Column       | type       | Option                        |
 | ------------ | ---------- | ----------------------------- |
+| user         | references | null:false, foreign_key: true |
 | item         | references | null:false, foreign_key: true |
 | purchaser    | references | null:false, foreign_key: true |
 
 ### Association
 
-- has_one :users
-- has_one :items_purchasers
+- has_one :purchaser
+- belongs_to :user
 - belongs_to :item
-- belongs_to :purchaser
