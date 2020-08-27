@@ -16,7 +16,7 @@
 ### Association
 
 - has_many :items
-- has_many :purchaser_info
+- has_many :purchaser_infos
 
 ## items テーブル
 
@@ -47,6 +47,7 @@
 | city            | string     | null:false                    |
 | address1        | string     | null:false                    |
 | address2        | string     |                               |
+| phone_number    | integer    | null:false                    |
 | purchaser_info  | references | null:false, foreign_key: true |
 
 ### Association
