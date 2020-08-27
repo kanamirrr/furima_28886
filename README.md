@@ -47,7 +47,7 @@
 | city            | string     | null:false                    |
 | address1        | string     | null:false                    |
 | address2        | string     |                               |
-| item_purchaser  | references | null:false, foreign_key: true |
+| purchaser_info  | references | null:false, foreign_key: true |
 
 ### Association
 
