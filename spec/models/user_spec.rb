@@ -28,6 +28,26 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include("First name can't be blank")
       end
+      it "family_nameが全角漢字でないと登録できない" do
+        @user.family_name = "yamada"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Family name full-width characters.")
+      end
+      it "first_nameが全角漢字でないと登録できない" do
+        @user.first_name = "yoko"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name full-width characters.")
+      end
+      it "family_nameが全角カタカナでないと登録できない" do
+        @user.family_name = "ﾔﾏﾀﾞ"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Family name full-width characters.")
+      end
+      it "first_nameが全角カタカナでないと登録できない" do
+        @user.first_name = "ﾖｳｺ"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name full-width characters.")
+      end
       it "family_name_kanaが空だと登録できない" do
         @user.family_name_kana = ''
         @user.valid?
@@ -52,6 +72,11 @@ RSpec.describe User, type: :model do
         @user.email = ''
         @user.valid?
         expect(@user.errors.full_messages).to include("Email can't be blank")
+      end
+      it "emailに＠が含まれない場合登録できない" do
+        @user.email = '@'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Email is invalid")
       end
       it "重複したemailが存在する場合登録できない" do
         @user.save
