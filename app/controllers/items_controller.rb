@@ -1,15 +1,16 @@
 class ItemsController < ApplicationController
+  before_action :move_to_signin, except: [:index]
+
   def index
     @items = Item.all
   end
 
   def new
-    @items = Item.new
-    @ietms = Item.order("created_at DESC")
+    @item = Item.new
   end
 
   def create
-    @item = Item.new(item_params)
+    Item.create(item_params)
   end
 
   def show
@@ -18,7 +19,12 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:name, :images).merge(user_id: current_user.id)
+    params.require(:item).permit(:name, :images)
   end
 
+  def move_to_signin
+    unless user_signed_in?
+      redirect_to user_session_path
+    end
+  end
 end
