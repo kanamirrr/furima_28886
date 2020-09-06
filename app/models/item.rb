@@ -16,7 +16,7 @@ class Item < ApplicationRecord
     validates :postage_payer_id, numericality: { other_than: 1 } 
     validates :prefecture_code_id, numericality: { other_than: 1 } 
     validates :preparation_day_id, numericality: { other_than: 1 } 
-    validates :price, length: { minimum: 300, maximum:9,999,999 }, format: { with: /\A[0-9]+\z/, message:"falf-width number." }
+    validates :price, numericality: {only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999}, format: { with: /\A[0-9]+\z/, message:"falf-width number." }
   end
 
 end
