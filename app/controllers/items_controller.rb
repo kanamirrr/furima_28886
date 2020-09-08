@@ -11,6 +11,7 @@ class ItemsController < ApplicationController
 
   def create
     Item.create(item_params)
+    redirect_to root_path
   end
 
   def show
@@ -19,7 +20,7 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:name, :images)
+    params.require(:item).permit(:image, :name, :introduce, :category_id, :condition_id, :postage_payer_id, :prefecture_code_id, :preparation_day_id, :price).merge(user_id: current_user.id)
   end
 
   def move_to_signin
