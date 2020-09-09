@@ -9,15 +9,14 @@ class Item < ApplicationRecord
   belongs_to :user
 
   with_options presence: true do
-    validates :image 
+    validates :image
     validates :name, length: { maximum: 40 }
     validates :introduce, length: { maximum: 1000 }
-    validates :category_id, numericality: { other_than: 1, message:"Select" } 
-    validates :condition_id, numericality: { other_than: 1, message:"Select" } 
-    validates :postage_payer_id, numericality: { other_than: 1, message:"Select" } 
-    validates :prefecture_code_id, numericality: { other_than: 1, message:"Select" } 
-    validates :preparation_day_id, numericality: { other_than: 1, message:"Select" } 
-    validates :price, numericality: {only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, message:"Out of setting range, Half-width number"}
+    validates :category_id, numericality: { other_than: 1, message: 'Select' }
+    validates :condition_id, numericality: { other_than: 1, message: 'Select' }
+    validates :postage_payer_id, numericality: { other_than: 1, message: 'Select' }
+    validates :prefecture_code_id, numericality: { other_than: 1, message: 'Select' }
+    validates :preparation_day_id, numericality: { other_than: 1, message: 'Select' }
+    validates :price, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999, message: 'Out of setting range, Half-width number' }
   end
-
 end
