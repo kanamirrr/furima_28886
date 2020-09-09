@@ -2,8 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Item, type: :model do
   before do
-    @user = FactoryBot.create(:user)
-    @item = FactoryBot.build(:item, user_id: @user.id)
+    @item = FactoryBot.build(:item)
     @item.image = fixture_file_upload('public/images/test_image.jpg')
   end
   describe '#create' do
@@ -43,27 +42,27 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include('Introduce is too long (maximum is 1000 characters)')
       end
       it 'categoryを選択してないと出品できない' do
-        @item.category_id = ''
+        @item.category_id = '1'
         @item.valid?
         expect(@item.errors.full_messages).to include('Category Select')
       end
       it 'conditionが選択してないと出品できない' do
-        @item.condition_id = ''
+        @item.condition_id = '1'
         @item.valid?
         expect(@item.errors.full_messages).to include('Condition Select')
       end
       it 'postage_payerが選択してないと出品できない' do
-        @item.postage_payer_id = ''
+        @item.postage_payer_id = '1'
         @item.valid?
         expect(@item.errors.full_messages).to include('Postage payer Select')
       end
       it 'prefecture_codeが選択してないと出品できない' do
-        @item.prefecture_code_id = ''
+        @item.prefecture_code_id = '1'
         @item.valid?
         expect(@item.errors.full_messages).to include('Prefecture code Select')
       end
       it 'preparation_dayが選択してないと出品できない' do
-        @item.preparation_day_id = ''
+        @item.preparation_day_id = '1'
         @item.valid?
         expect(@item.errors.full_messages).to include('Preparation day Select')
       end
