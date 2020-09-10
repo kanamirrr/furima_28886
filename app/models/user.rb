@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many :items
+
   with_options presence: true do
     FULL_WIDTH_CHARACTER_REGEX = /\A[ぁ-んァ-ン一-龥]/.freeze
     validates :family_name, format: { with: FULL_WIDTH_CHARACTER_REGEX, message: 'full-width characters.' }
