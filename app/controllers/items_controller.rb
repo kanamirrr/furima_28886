@@ -1,8 +1,8 @@
 class ItemsController < ApplicationController
-  before_action :move_to_signin, except: [:index]
+  before_action :move_to_signin, except: [:index, :show]
 
   def index
-    @items = Item.all
+    @items = Item.all.order("created_at DESC")
   end
 
   def new
@@ -19,6 +19,23 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @item = Item.find(params[:id])
+
+  end
+
+  def edit
+  end
+
+  def update
+    #if @item.user_id == current_user.id
+    #  if @item.update(item_params)
+    #    redirect_to item_path(@item.id)
+    #  else
+    #    redirect_to action: :edit
+    #  end
+    #else
+    #  redirect_to action: :edit
+    #end
   end
 
   private
