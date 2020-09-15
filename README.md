@@ -54,7 +54,7 @@
 
 - belongs_to :purchaser_info
 
-## purchaser_info テーブル
+## purchaser_infos テーブル
 
 | Column       | type       | Option                        |
 | ------------ | ---------- | ----------------------------- |
