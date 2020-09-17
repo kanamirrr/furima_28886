@@ -36,7 +36,9 @@
 ### Association
 
 - has_one :purchaser
+- has_one :purchaser_info
 - belongs_to :user
+
 
 ##  purchasers テーブル
 
