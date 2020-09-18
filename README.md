@@ -36,7 +36,9 @@
 ### Association
 
 - has_one :purchaser
+- has_one :purchaser_info
 - belongs_to :user
+
 
 ##  purchasers テーブル
 
@@ -54,7 +56,7 @@
 
 - belongs_to :purchaser_info
 
-## purchaser_info テーブル
+## purchaser_infos テーブル
 
 | Column       | type       | Option                        |
 | ------------ | ---------- | ----------------------------- |

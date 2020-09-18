@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :items
+  has_many :purchaser_infos
 
   with_options presence: true do
     FULL_WIDTH_CHARACTER_REGEX = /\A[ぁ-んァ-ン一-龥]/.freeze
