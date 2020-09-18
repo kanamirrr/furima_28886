@@ -1,12 +1,8 @@
 class PurchasersController < ApplicationController
-  before_action :set_item, only: [:index, :new, :create]
+  before_action :set_item, only: [:index, :create]
   before_action :move_to_root
 
   def index
-    @purchasers = Purchaser.all
-  end
-
-  def new
     @purchaser = Order.new
   end
 
