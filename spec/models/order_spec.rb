@@ -38,20 +38,10 @@ RSpec.describe Order, type: :model do
         @purchaser.valid?
         expect(@purchaser.errors.full_messages).to include("City can't be blank")
       end
-      it 'cityが全角でないと購入できない' do
-        @purchaser.city = 'ﾐﾅﾄｸ'
-        @purchaser.valid?
-        expect(@purchaser.errors.full_messages).to include('City is invalid')
-      end
       it 'address1が空だと購入できない' do
         @purchaser.address1 = ''
         @purchaser.valid?
         expect(@purchaser.errors.full_messages).to include("Address1 can't be blank")
-      end
-      it 'address1が全角でないと購入できない' do
-        @purchaser.address1 = 'ｱｵﾔﾏ1ｰ1ｰ1'
-        @purchaser.valid?
-        expect(@purchaser.errors.full_messages).to include('Address1 is invalid')
       end
       it 'phone_numberが空だと購入できない' do
         @purchaser.phone_number = ''

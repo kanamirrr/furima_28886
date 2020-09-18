@@ -7,9 +7,8 @@ class Order
     validates :token
     validates :post_code, format: {with: /\A\d{3}[-]\d{4}\z/, message: 'Input correctly' }
     validates :prefecture_code_id, numericality: { other_than: 1, message: 'Select' }
-    FULL_WIDTH_CHARACTER_REGEX = /\A[ぁ-んァ-ン一-龥]/
-    validates :city, format: {with: FULL_WIDTH_CHARACTER_REGEX }
-    validates :address1, format: {with: FULL_WIDTH_CHARACTER_REGEX }
+    validates :city
+    validates :address1
     validates :phone_number, format: {with: /\A\d{11}\z/}
   end
 
