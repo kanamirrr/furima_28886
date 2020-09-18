@@ -4,11 +4,13 @@ class Order
   attr_accessor :token, :post_code, :prefecture_code_id, :city, :address1, :address2, :phone_number, :item_id, :user_id
 
   with_options presence: true do
-    validates :post_code, format: {with: /\A\d{3}[-]\d{4}\z/ }
+    validates :token
+    validates :post_code, format: {with: /\A\d{3}[-]\d{4}\z/, message: 'Input correctly' }
     validates :prefecture_code_id, numericality: { other_than: 1, message: 'Select' }
-    validates :city, format: {with: /\A[ぁ-んァ-ン一-龥]/ }
-    validates :address1
-    validates :phone_number
+    FULL_WIDTH_CHARACTER_REGEX = /\A[ぁ-んァ-ン一-龥]/
+    validates :city, format: {with: FULL_WIDTH_CHARACTER_REGEX }
+    validates :address1, format: {with: FULL_WIDTH_CHARACTER_REGEX }
+    validates :phone_number, format: {with: /\A\d{11}\z/}
   end
 
   def save
