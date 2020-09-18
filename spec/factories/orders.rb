@@ -7,6 +7,5 @@ FactoryBot.define do
     address1           { '青山１ー１ー１' }
     address2           { '1002' }
     phone_number       { '09012345678' }
-    
   end
 end

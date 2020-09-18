@@ -10,7 +10,7 @@ RSpec.describe Order, type: :model do
       it 'tokenとpost_codeとprefecture_codeとcityとaddress1とphone_numberがあれば商品購入できること' do
         expect(@purchaser).to be_valid
       end
-     end
+    end
 
     context '商品購入がうまくいかないとき' do
       it 'tokenが空だと購入できない' do
@@ -26,7 +26,7 @@ RSpec.describe Order, type: :model do
       it 'post_codeに-を含んでいないと購入できない' do
         @purchaser.post_code = '1234567'
         @purchaser.valid?
-        expect(@purchaser.errors.full_messages).to include("Post code Input correctly")
+        expect(@purchaser.errors.full_messages).to include('Post code Input correctly')
       end
       it 'prefecture_codeが空だと購入できない' do
         @purchaser.prefecture_code_id = ''
@@ -51,12 +51,12 @@ RSpec.describe Order, type: :model do
       it 'phone_numberに-を含んでいると購入できない' do
         @purchaser.phone_number = '090-1234-5678'
         @purchaser.valid?
-        expect(@purchaser.errors.full_messages).to include("Phone number is invalid")
+        expect(@purchaser.errors.full_messages).to include('Phone number is invalid')
       end
       it 'phone_numberが12桁以上だと購入できない' do
         @purchaser.phone_number = '090123456789'
         @purchaser.valid?
-        expect(@purchaser.errors.full_messages).to include("Phone number is invalid")
+        expect(@purchaser.errors.full_messages).to include('Phone number is invalid')
       end
     end
   end
