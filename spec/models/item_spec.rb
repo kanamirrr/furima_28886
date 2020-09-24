@@ -3,23 +3,28 @@ require 'rails_helper'
 RSpec.describe Item, type: :model do
   before do
     @item = FactoryBot.build(:item)
-    @item.image = fixture_file_upload('public/images/test_image.jpg')
+    @item.images = [fixture_file_upload('public/images/test_image.jpg')]
   end
   describe '#create' do
   end
 
   describe '商品出品' do
     context '商品出品がうまくいくとき' do
-      it 'imageとnameとintoroduceとcategoryとconditionとpostage_payerとprefecture_codeとpreparation_dayとpriceが存在していれば保存できること' do
+      it 'imagesとnameとintoroduceとcategoryとconditionとpostage_payerとprefecture_codeとpreparation_dayとpriceが存在していれば保存できること' do
         expect(@item).to be_valid
       end
     end
 
     context '商品出品がうまくいかないとき' do
-      it 'imageが空だと出品できない' do
-        @item.image = nil
+      it 'imagesが空だと出品できない' do
+        @item.images = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include("Image can't be blank")
+        expect(@item.errors.full_messages).to include("Images can't be blank")
+      end
+      it 'imagesが５枚以上だと出品できない' do
+        @item.images = [fixture_file_upload('public/images/test_image.jpg'), fixture_file_upload('public/images/test_image.jpg'), fixture_file_upload('public/images/test_image.jpg'), fixture_file_upload('public/images/test_image.jpg'), fixture_file_upload('public/images/test_image.jpg'), fixture_file_upload('public/images/test_image.jpg'), ]
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Images Upload limit 5")
       end
       it 'nameが空だと出品できない' do
         @item.name = ''

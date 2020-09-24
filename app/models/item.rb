@@ -5,13 +5,13 @@ class Item < ApplicationRecord
   belongs_to_active_hash :postage_payer
   belongs_to_active_hash :prefecture_code
   belongs_to_active_hash :preparation_day
-  has_one_attached :image
+  has_many_attached :images
   belongs_to :user
   has_one :purchaser
   has_one :purchaser_info
 
   with_options presence: true do
-    validates :image
+    validates :images, length: {minimum:1, maximum:5, message: 'Upload limit 5' }
     validates :name, length: { maximum: 40 }
     validates :introduce, length: { maximum: 1000 }
     validates :category_id, numericality: { other_than: 1, message: 'Select' }
